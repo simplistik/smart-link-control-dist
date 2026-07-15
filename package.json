@@ -1,6 +1,6 @@
 {
   "name": "@tprt/smart-link-control",
-  "version": "2.14.0",
+  "version": "2.15.0",
   "description": "Typed wrapper for the SmartLinkControl inspector control exposed by the TPRT Smart Links plugin.",
   "license": "GPL-2.0-or-later",
   "type": "module",
