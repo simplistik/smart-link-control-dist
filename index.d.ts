@@ -39,3 +39,15 @@ export interface SmartLinkControlProps {
 }
 
 export const SmartLinkControl: ComponentType< SmartLinkControlProps >;
+
+export interface SmartLinkToolbarButtonProps {
+  value: SmartLinkValue | null | undefined;
+  onChange: ( value: SmartLinkValue | null ) => void;
+  /** Supply to control the drawer's open state externally. */
+  isOpen?: boolean;
+  onOpenChange?: ( isOpen: boolean ) => void;
+  /** Overrides the default "Add Smart Link" / "Edit Smart Link" tooltip. */
+  title?: string;
+}
+
+export const SmartLinkToolbarButton: ComponentType< SmartLinkToolbarButtonProps >;

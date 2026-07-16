@@ -59,6 +59,56 @@ const Edit = ( { attributes, setAttributes } ) => (
 );
 ```
 
+### Toolbar button
+
+`SmartLinkToolbarButton` renders a block-toolbar entry point and mounts the
+drawer itself, so it survives the settings sidebar being closed. Render it at
+your block's top level, not inside `InspectorControls`.
+
+```js
+import { SmartLinkControl, SmartLinkToolbarButton } from '@tprt/smart-link-control';
+import { useState } from '@wordpress/element';
+
+const Edit = ( { attributes, setAttributes } ) => {
+  const [ isOpen, setIsOpen ] = useState( false );
+  const onChange = ( smartLink ) => setAttributes( { smartLink } );
+
+  return (
+    <>
+      <SmartLinkToolbarButton
+        value={ attributes.smartLink }
+        onChange={ onChange }
+        isOpen={ isOpen }
+        onOpenChange={ setIsOpen }
+      />
+      <InspectorControls>
+        <PanelBody title="Link">
+          <SmartLinkControl
+            value={ attributes.smartLink }
+            onChange={ onChange }
+            isOpen={ isOpen }
+            onOpenChange={ setIsOpen }
+            renderDrawer={ false }
+          />
+        </PanelBody>
+      </InspectorControls>
+    </>
+  );
+};
+```
+
+Sharing `isOpen`/`onOpenChange` and setting `renderDrawer={ false }` on the
+control is what keeps a single drawer mounted. Used alone, omit both open props
+and the button manages its own state.
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `value` | `SmartLinkValue \| null` | The stored link object. |
+| `onChange` | `( value ) => void` | Receives the new value. |
+| `isOpen` | `boolean` | Optional controlled open state. |
+| `onOpenChange` | `( isOpen ) => void` | Open-state change callback. |
+| `title` | `string` | Optional tooltip override. |
+
 ## Props
 
 | Prop | Type | Description |
